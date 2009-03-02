@@ -1,0 +1,8 @@
+comeback.gemspec
+lib/comeback.rb
+Manifest
+MIT-LICENSE
+rails/init.rb
+Rakefile
+README.markdown
+test/comeback_test.rb
