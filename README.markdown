@@ -8,7 +8,8 @@ When a referer is stored, it is checked against the current page URL, and if
 they're the same, then the referer won't be set and the default path will be
 used instead.
 
-The session key :return_to is used to store the URL.
+By default, the session key :comeback_to is used to store the URL. The class
+inheritable accessor comeback_session_key can be set to override this.
 
 
 Example
