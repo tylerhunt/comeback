@@ -1,19 +1,28 @@
 module Comeback
-  def clear_location
-    session[:return_to] = nil
+  def self.included(base)
+    base.class_inheritable_accessor :comeback_session_key
+    base.comeback_session_key = :comeback_to
   end
 
   def store_location(url=nil)
-    session[:return_to] ||= url ? url : request.url
+    session[comeback_session_key] ||= url ? url : request.url
   end
 
   def store_referer
     referer = request.env['HTTP_REFERER']
-    session[:return_to] ||= referer unless referer == request.url
+    store_location(referer) unless referer == request.url
+  end
+
+  def clear_location
+    session[comeback_session_key] = nil
   end
 
   def return_or_redirect_to(*args)
-    session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(*args)
-    session[:return_to] = nil
+    if session[comeback_session_key]
+      redirect_to(session[comeback_session_key])
+      clear_location
+    else
+      redirect_to(*args)
+    end
   end
 end
