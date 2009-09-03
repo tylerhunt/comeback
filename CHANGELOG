@@ -1,5 +1,6 @@
 0.0.2 - September 3, 2009
 
+* Added the ability to override the session key name (Tyler Hunt)
 * Added specs (Tyler Hunt)
 * Migrated to Jeweler (Tyler Hunt)
 
